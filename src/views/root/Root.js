@@ -9,6 +9,7 @@ function Root() {
       <h1>lul</h1>
       <Button>close / save</Button>
       <Button secondary>remove</Button>
+      <Button secondary>marek</Button>
     </div>
   );
 }
