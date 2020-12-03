@@ -11,6 +11,7 @@
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-scripts": "4.0.0",
+        "storybook": "^6.1.9",
         "styled-components": "^5.2.1",
         "web-vitals": "^0.2.4"
     },
@@ -36,6 +37,7 @@
     },
     "devDependencies": {
         "@storybook/addon-actions": "^6.1.8",
+        "@storybook/addon-controls": "^6.1.9",
         "@storybook/addon-essentials": "^6.1.8",
         "@storybook/addon-links": "^6.1.8",
         "@storybook/node-logger": "^6.1.8",
