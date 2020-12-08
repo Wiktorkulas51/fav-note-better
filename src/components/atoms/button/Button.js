@@ -1,10 +1,7 @@
 import styled, { css } from "styled-components";
 
 const Button = styled.button`
-  background-color: ${async ({ color }) => {
-    console.log(color);
-    color === true ? color : "hsl(49, 100%, 58%)";
-  }};
+  background-color: ${({ theme }) => theme.primary};
   width: 220px;
   height: 47px;
   border: none;
@@ -28,3 +25,4 @@ const Button = styled.button`
 `;
 
 export default Button;
+// background-color: ${ ({ color }) => color || "hsl(49, 100%, 58%)"};

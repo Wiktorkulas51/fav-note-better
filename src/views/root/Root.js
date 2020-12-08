@@ -1,15 +1,20 @@
 import React from "react";
+import { ThemeProvider } from "styled-components";
 import GlobalStyle from "../../theme/GlobalStyle";
-import Button from "../../components/button/Button";
+import Button from "../../components/atoms/button/Button";
+import { theme } from "../../theme/mainTheme";
 
 function Root() {
   return (
     <div className="App">
       <GlobalStyle />
-      <h1>lul</h1>
-      <Button>close / save</Button>
-      <Button secondary>remove</Button>
-      <Button secondary>marek</Button>
+      <ThemeProvider theme={theme}>
+        <>
+          <h1>lul</h1>
+          <Button>close / save</Button>
+          <Button secondary>remove</Button>
+        </>
+      </ThemeProvider>
     </div>
   );
 }
