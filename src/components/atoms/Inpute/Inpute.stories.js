@@ -7,10 +7,6 @@ export default {
   title: "Inpute",
 };
 
-export const inpute = () => {
-  return <Inpute placeholder="login" theme={theme} />;
-};
+export const inpute = () => <Inpute placeholder="login" theme={theme} />;
 
-export const inpSearch = () => {
-  return <Inpute placeholder="search" theme={theme} search />;
-};
+export const inpSearch = () => <Inpute placeholder="search" theme={theme} search />;

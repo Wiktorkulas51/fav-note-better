@@ -1,10 +1,13 @@
 import styled, { css } from "styled-components";
 import magifireIcon from "../../../assets/magnifire.svg";
+console.log(magifireIcon);
 
 const Input = styled.input`
   padding: 15px 30px;
   font-size: ${({ theme }) => theme.fontSize.s};
-  background-color: ${({ theme }) => console.log(theme.grey100)};
+  background-color: ${({ theme }) => {
+    return theme.grey100;
+  }};
   border: none;
   border-radius: 50px;
   ::placeholder {
@@ -20,7 +23,7 @@ const Input = styled.input`
         font-size: ${({ theme }) => theme.fontSize.xs};
         background-image: url(${magifireIcon});
         background-size: 20px;
-        background-position: 10px 50%;
+        background-position: 150px 50%;
         background-repeat: no-repeat;
       `;
   }}
