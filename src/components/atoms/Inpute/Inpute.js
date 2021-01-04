@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
-import magifireIcon from "../../../assets/magnifire.svg";
-console.log(magifireIcon);
+// import magnifierIcon from "../../../assets/icons/magnifier.svg";
+import magnifierIcon from "./magnifier.png";
 
 const Input = styled.input`
   padding: 15px 30px;
@@ -16,17 +16,16 @@ const Input = styled.input`
     color: ${({ theme }) => theme.grey300};
   }
 
-  ${({ search }) => {
+  ${({ search }) =>
     search &&
-      css`
-        padding: 10px 20px 10px 40px;
-        font-size: ${({ theme }) => theme.fontSize.xs};
-        background-image: url(${magifireIcon});
-        background-size: 20px;
-        background-position: 150px 50%;
-        background-repeat: no-repeat;
-      `;
-  }}
+    css`
+      padding: 10px 20px 10px 40px;
+      font-size: ${({ theme }) => theme.fontSize.xs};
+      background-image: url(${magnifierIcon});
+      background-size: 15px;
+      background-position: 15px 50%;
+      background-repeat: no-repeat;
+    `}
 `;
 
 export default Input;
