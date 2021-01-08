@@ -10,7 +10,7 @@ export default {
 export const heading = () => <Heading theme={theme}>heading</Heading>;
 
 export const headingBig = () => (
-  <Heading Big theme={theme}>
+  <Heading theme={theme} Big>
     heading big
   </Heading>
 );
