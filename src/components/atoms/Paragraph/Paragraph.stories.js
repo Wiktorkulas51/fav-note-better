@@ -4,7 +4,7 @@ import { theme } from "../../../theme/mainTheme";
 
 export default {
   component: Paragraph,
-  title: "Paragraph",
+  title: "Atoms/Paragraph",
 };
 
 export const paragraph = () => {

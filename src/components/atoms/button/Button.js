@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
+import { theme } from "../../../theme/mainTheme";
 
 const Button = styled.button`
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ color }) => (color ? color : theme.note)};
   width: 220px;
   height: 47px;
   border: none;
@@ -25,4 +26,3 @@ const Button = styled.button`
 `;
 
 export default Button;
-// background-color: ${ ({ color }) => color || "hsl(49, 100%, 58%)"};

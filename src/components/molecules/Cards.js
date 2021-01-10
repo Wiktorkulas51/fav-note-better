@@ -1,9 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { theme } from "../../theme/mainTheme";
 import styled, { css } from "styled-components";
 import Heading from "../atoms/Heading/Heading";
 import Button from "../atoms/button/Button";
 import Paragraph from "../atoms/Paragraph/Paragraph";
-import { theme } from "../../theme/mainTheme";
+import linkIcon from "../../assets/icons/link.png";
 
 export const StyledWrappers = styled.div`
   min-height: 380px;
@@ -16,8 +18,13 @@ export const StyledWrappers = styled.div`
 `;
 
 const InnerWrapper = styled.div`
+  position: relative;
   padding: 17px 30px 10px;
-  background-color: ${({ yellow }) => (yellow ? theme.primary : "white")};
+  background-color: ${({ activeColor }) => (activeColor ? theme[activeColor] : "white")};
+
+  :first-of-type {
+    z-index: 9999;
+  }
 
   ${({ flex }) =>
     flex &&
@@ -38,11 +45,36 @@ const StyledHeading = styled(Heading)`
   margin: 0;
 `;
 
-export const Cards = () => (
+const StyledAvatar = styled.img`
+  width: 86px;
+  height: 86;
+  border: 3px solid ${() => theme.twitter};
+  border-radius: 50px;
+  position: absolute;
+  right: 25px;
+  top: 25px;
+`;
+
+const StyledLinkButton = styled.a`
+  display: block;
+  width: 47px;
+  height: 47px;
+  border-radius: 50px;
+  background: white url(${linkIcon}) no-repeat;
+  background-size: 50%;
+  background-position: 50%;
+  position: absolute;
+  right: 25px;
+  top: 25px;
+`;
+
+export const Card = ({ cardType }) => (
   <StyledWrappers>
-    <InnerWrapper yellow>
+    <InnerWrapper activeColor={cardType}>
       <StyledHeading theme={theme}>Hello</StyledHeading>
       <DateInfo theme={theme}>3 days</DateInfo>
+      {cardType === "twitter" && <StyledAvatar src="https://unavatar.now.sh/twitter/hello_roman" />}
+      {cardType === "article" && <StyledLinkButton href="https://google.com" />}
     </InnerWrapper>
     <InnerWrapper flex>
       <Paragraph theme={theme}>
@@ -54,3 +86,11 @@ export const Cards = () => (
     </InnerWrapper>
   </StyledWrappers>
 );
+
+Card.propTypes = {
+  cardType: PropTypes.oneOf(["note", "twitter", "article"]),
+};
+
+Card.defaultProps = {
+  cardType: "note",
+};

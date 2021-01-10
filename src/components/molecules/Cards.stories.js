@@ -1,9 +1,11 @@
 import React from "react";
-import { StyledWrappers, Cards } from "./Cards";
+import { StyledWrappers, Card } from "./Cards";
 
 export default {
   component: StyledWrappers,
-  title: "Cards",
+  title: "Molecules/Cards",
 };
 
-export const cards = () => <Cards />;
+export const cardsPrimary = () => <Card />;
+export const cardsSecondary = () => <Card cardType="twitter" />;
+export const cardsTertiary = () => <Card cardType="article" />;

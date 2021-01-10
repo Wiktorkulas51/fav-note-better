@@ -4,7 +4,7 @@ import { theme } from "../../../theme/mainTheme";
 
 export default {
   component: Inpute,
-  title: "Inpute",
+  title: "Atoms/Inpute",
 };
 
 export const inpute = () => <Inpute placeholder="login" theme={theme} />;
