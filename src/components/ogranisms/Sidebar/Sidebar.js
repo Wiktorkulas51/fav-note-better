@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import ButtonIcon from "../../atoms/ButtonIcon/ButtonIcon";
 import bulbIcon from "../../../assets/icons/bulb.svg";
@@ -62,5 +63,9 @@ const SideBar = ({ pageType }) => (
     <StyledLougtButton as={NavLink} to="/login" icon={logoutIcon} />
   </StyledSideBar>
 );
+
+SideBar.propTypes = {
+  pageType: PropTypes.string.isRequired,
+};
 
 export default SideBar;

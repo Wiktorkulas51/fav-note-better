@@ -19,8 +19,8 @@ export const StyledWrappers = styled.div`
 
 const InnerWrapper = styled.div`
   position: relative;
-  padding: 17px 30px 10px;
-  background-color: ${({ activeColor }) => (activeColor ? theme[activeColor] : "white")};
+  padding: 17px 30px;
+  background-color: ${({ activeColor, theme }) => (activeColor ? theme[activeColor] : "white")};
 
   :first-of-type {
     z-index: 9999;
