@@ -2,13 +2,19 @@ import styled, { css } from "styled-components";
 import { theme } from "../../../theme/mainTheme";
 
 const Button = styled.button`
-  background-color: ${({ color }) => (color ? color : theme.note)};
+  background-color: ${({ activecolor }) => theme[activecolor]};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+  padding: 0;
   width: 220px;
   height: 47px;
   border: none;
   border-radius: 50px;
   font-family: "Montserrat";
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   text-transform: uppercase;
 

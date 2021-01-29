@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { theme } from "../../theme/mainTheme";
 import styled, { css } from "styled-components";
@@ -6,6 +6,7 @@ import Heading from "../atoms/Heading/Heading";
 import Button from "../atoms/button/Button";
 import Paragraph from "../atoms/Paragraph/Paragraph";
 import linkIcon from "../../assets/icons/link.png";
+import { Redirect } from "react-router-dom";
 
 export const StyledWrappers = styled.div`
   min-height: 380px;
@@ -48,7 +49,7 @@ const StyledHeading = styled(Heading)`
 const StyledAvatar = styled.img`
   width: 86px;
   height: 86;
-  border: 3px solid ${() => theme.twitter};
+  border: 3px solid ${() => theme.twitters};
   border-radius: 50px;
   position: absolute;
   right: 25px;
@@ -65,28 +66,44 @@ const StyledLinkButton = styled.a`
   background-position: 50%;
   position: absolute;
   right: 25px;
-  top: 25px;
+  top: 15px;
 `;
 
-export const Card = ({ cardType, created, content, title, articleUrl, twitterName }) => (
-  <StyledWrappers>
-    <InnerWrapper activeColor={cardType}>
-      <StyledHeading theme={theme}>{title}</StyledHeading>
-      <DateInfo theme={theme}>{created}</DateInfo>
-      {cardType === "twitter" && (
-        <StyledAvatar src={`src="http://twivatar.herokuapp.com/${twitterName}`} />
-      )}
-      {cardType === "article" && <StyledLinkButton href={articleUrl} />}
-    </InnerWrapper>
-    <InnerWrapper flex>
-      <Paragraph theme={theme}>{content}</Paragraph>
-      <Button secondary>REMOVE</Button>
-    </InnerWrapper>
-  </StyledWrappers>
-);
+export class Card extends Component {
+  state = {
+    redirect: false,
+  };
+
+  handleClick = () => this.setState({ redirect: true });
+
+  render() {
+    const { id, cardType, created, content, title, articleUrl, twitterName } = this.props;
+
+    if (this.state.redirect) {
+      return <Redirect to={`${cardType}/${id}`} />;
+    }
+
+    return (
+      <StyledWrappers onClick={this.handleClick}>
+        <InnerWrapper activeColor={cardType}>
+          <StyledHeading theme={theme}>{title}</StyledHeading>
+          <DateInfo theme={theme}>{created}</DateInfo>
+          {cardType === "twitters" && (
+            <StyledAvatar src={`src="http://twivatar.herokuapp.com/${twitterName}`} />
+          )}
+          {cardType === "articles" && <StyledLinkButton href={articleUrl} />}
+        </InnerWrapper>
+        <InnerWrapper flex>
+          <Paragraph theme={theme}>{content}</Paragraph>
+          <Button secondary>REMOVE</Button>
+        </InnerWrapper>
+      </StyledWrappers>
+    );
+  }
+}
 
 Card.propTypes = {
-  cardType: PropTypes.oneOf(["note", "twitter", "article"]),
+  cardType: PropTypes.oneOf(["notes", "twitters", "articles"]),
   title: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
   twitterName: PropTypes.string,
@@ -95,5 +112,5 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  cardType: "note",
+  cardType: "notes",
 };

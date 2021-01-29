@@ -19,7 +19,6 @@ export default {
 };
 
 export const primary = ({ buttonColors }) => {
-  console.log(buttonColors);
   return <Button color={buttonColors}>text</Button>;
 };
 
