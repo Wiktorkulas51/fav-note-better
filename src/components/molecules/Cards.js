@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { theme } from "../../theme/mainTheme";
 import styled, { css } from "styled-components";
+import PropTypes from "prop-types";
 import Heading from "../atoms/Heading/Heading";
 import Button from "../atoms/button/Button";
 import Paragraph from "../atoms/Paragraph/Paragraph";
 import linkIcon from "../../assets/icons/link.png";
+import { theme } from "../../theme/mainTheme";
+import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { removeItem as removeItemAction } from "../../actions/index";
 
 export const StyledWrappers = styled.div`
   min-height: 380px;
@@ -69,7 +71,7 @@ const StyledLinkButton = styled.a`
   top: 15px;
 `;
 
-export class Card extends Component {
+class Card extends Component {
   state = {
     redirect: false,
   };
@@ -77,7 +79,16 @@ export class Card extends Component {
   handleClick = () => this.setState({ redirect: true });
 
   render() {
-    const { id, cardType, created, content, title, articleUrl, twitterName } = this.props;
+    const {
+      id,
+      cardType,
+      created,
+      content,
+      title,
+      articleUrl,
+      twitterName,
+      removeItem,
+    } = this.props;
 
     if (this.state.redirect) {
       return <Redirect to={`${cardType}/${id}`} />;
@@ -95,7 +106,9 @@ export class Card extends Component {
         </InnerWrapper>
         <InnerWrapper flex>
           <Paragraph theme={theme}>{content}</Paragraph>
-          <Button secondary>REMOVE</Button>
+          <Button onClick={() => removeItem(cardType, id)} secondary>
+            REMOVE
+          </Button>
         </InnerWrapper>
       </StyledWrappers>
     );
@@ -109,8 +122,17 @@ Card.propTypes = {
   twitterName: PropTypes.string,
   articleUrl: PropTypes.string,
   content: PropTypes.string.isRequired,
+  removeItem: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
   cardType: "notes",
+  twitterName: null,
+  articleUrl: null,
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
+});
+
+export default connect(null, mapDispatchToProps)(Card);
