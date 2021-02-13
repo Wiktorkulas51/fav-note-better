@@ -9,6 +9,7 @@ import penIcon from "../../../assets/icons/pen.svg";
 import twitterIcon from "../../../assets/icons/twitter.svg";
 import logoIcon from "../../../assets/icons/logo.svg";
 import { theme } from "../../../theme/mainTheme";
+import withContext from "../../../hoc/withContext";
 
 const StyledSideBar = styled.div`
   position: fixed;
@@ -46,8 +47,8 @@ const StyledLougtButton = styled(ButtonIcon)`
   margin-top: auto;
 `;
 
-const SideBar = ({ pageType }) => (
-  <StyledSideBar activeColor={pageType}>
+const SideBar = ({ pageContext }) => (
+  <StyledSideBar activeColor={pageContext}>
     <StyledLogoIcon to="/" />
     <StyledLinksList>
       <li>
@@ -65,7 +66,7 @@ const SideBar = ({ pageType }) => (
 );
 
 SideBar.propTypes = {
-  pageType: PropTypes.oneOf(["notes", "twitters", "articles"]),
+  pageContext: PropTypes.oneOf(["notes", "twitters", "articles"]),
 };
 
-export default SideBar;
+export default withContext(SideBar);

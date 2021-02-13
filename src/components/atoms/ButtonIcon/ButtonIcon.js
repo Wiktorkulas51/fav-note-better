@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { theme } from "../../../theme/mainTheme";
 
 const ButtonIcon = styled.button`
   display: block;
@@ -6,14 +7,23 @@ const ButtonIcon = styled.button`
   height: 67px;
   border-radius: 20px;
   background-image: url(${({ icon }) => icon});
-  background-position: 50% 50%;
-  background-size: 40px;
   background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 50% 50%;
   border: none;
 
   &.active {
     background-color: white;
   }
+
+  ${({ activecolor }) => {
+    return (
+      activecolor &&
+      css`
+        background-color: ${({ activecolor }) => theme[activecolor]};
+      `
+    );
+  }}
 `;
 
 export default ButtonIcon;
