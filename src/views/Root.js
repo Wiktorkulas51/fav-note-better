@@ -8,12 +8,14 @@ import Aritcles from "./aritcles";
 import Twitters from "./twitters";
 import DetailsPage from "./DetailsPage";
 import { routes } from "../routes/index";
+import loginPage from "../views/loginPage";
 
 const Root = () => (
   <Provider store={store}>
     <BrowserRouter>
       <MainTemplate>
         <Switch>
+          <Route exact path={routes.login} component={loginPage} />
           <Route exact path={routes.home} render={() => <Redirect to="/notes" />} />
           <Route exact path={routes.notes} component={Notes} />
           <Route path={routes.note} component={DetailsPage} />
