@@ -99,7 +99,6 @@ class Card extends Component {
       <StyledWrappers onClick={this.handleClick}>
         <InnerWrapper activeColor={cardType}>
           <StyledHeading theme={theme}>{title}</StyledHeading>
-          <DateInfo theme={theme}>{created}</DateInfo>
           {cardType === "twitters" && (
             <StyledAvatar src={`src="http://twivatar.herokuapp.com/${twitterName}`} />
           )}
@@ -122,7 +121,6 @@ Card.propTypes = {
   created: PropTypes.string.isRequired,
   twitterName: PropTypes.string,
   articleUrl: PropTypes.string,
-  content: PropTypes.string.isRequired,
   removeItem: PropTypes.func.isRequired,
 };
 

@@ -55,7 +55,6 @@ class GridTemplate extends Component {
   };
 
   handleNewItemBarToggle = () => {
-    console.log("asd");
     this.setState((prevState) => ({
       isNewItemBarVisible: !prevState.isNewItemBarVisible,
     }));
@@ -89,7 +88,7 @@ class GridTemplate extends Component {
 }
 
 GridTemplate.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   pageContext: PropTypes.oneOf(["notes", "twitters", "articles"]),
 };
 

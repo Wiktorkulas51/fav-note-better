@@ -10,6 +10,7 @@ import twitterIcon from "../../../assets/icons/twitter.svg";
 import logoIcon from "../../../assets/icons/logo.svg";
 import { theme } from "../../../theme/mainTheme";
 import withContext from "../../../hoc/withContext";
+import { routes } from "../../../routes/index";
 
 const StyledSideBar = styled.div`
   position: fixed;

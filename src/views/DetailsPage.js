@@ -1,53 +1,58 @@
 import React, { Component } from "react";
 import DetailsTemplate from "../templates/DetailsTemplate";
-import { routes } from "../routes/index";
+import withContext from "../hoc/withContext";
+import { connect } from "react-redux";
 
 class DetailsPage extends Component {
   state = {
-    pageType: "notes",
+    activeItem: {
+      title: "",
+      content: "",
+      articleUrl: "",
+      twitterName: "",
+    },
   };
 
   componentDidMount() {
-    switch (this.props.match.path) {
-      case routes.twitter:
-        this.setState({ pageType: "twitters" });
-        break;
-      case routes.article:
-        this.setState({ pageType: "articles" });
-        break;
-      case routes.note:
-        this.setState({ pageType: "notes" });
-        break;
-      default:
-        console.log("Something went wrong with matching paths");
-        break;
+    if (this.props.activeItem) {
+      const [activeItem] = this.props.activeItem;
+      console.log(activeItem);
+      this.setState({ activeItem });
+    } else {
+      const { id } = this.props.match.params;
+      axios
+        .get(`http://localhost:9000/api/note/${id}`)
+        .then(({ data }) => {
+          this.setState({ activeItem: data });
+        })
+        .catch((err) => console.log(err));
     }
   }
 
   render() {
-    const dummyArticle = {
-      id: 1,
-      title: "Wake me up when Vue ends",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi",
-      twitterName: "hello_roman",
-      articleUrl: "https://youtube.com/helloroman",
-      created: "1 day",
-    };
-
-    const { pageType } = this.state;
+    const { activeItem } = this.state;
 
     return (
       <DetailsTemplate
-        pageType={pageType}
-        title={dummyArticle.title}
-        created={dummyArticle.created}
-        content={dummyArticle.content}
-        articleUrl={dummyArticle.articleUrl}
-        twitterName={dummyArticle.twitterName}
+        title={activeItem.title}
+        content={activeItem.content}
+        articleUrl={activeItem.articleUrl}
+        twitterName={activeItem.twitterName}
       />
     );
   }
 }
 
-export default DetailsPage;
+const mapStateToProps = (state, ownProps) => {
+  console.log(state, ownProps);
+  if (state[ownProps.pageContext]) {
+    return {
+      activeItem: state[ownProps.pageContext].filter(
+        (item) => item._id === ownProps.match.params.id,
+      ),
+    };
+  }
+  return {};
+};
+
+export default withContext(connect(mapStateToProps)(DetailsPage));
