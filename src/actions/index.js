@@ -57,8 +57,6 @@ export const authenticate = (username, password) => (dispatch) => {
 export const fetchItems = (itemType) => (dispatch, getState) => {
   dispatch({ type: FETCH_REQUEST });
 
-  console.log(itemType, getState().userID);
-
   return axios
     .get("http://localhost:9000/api/notes/type", {
       params: {

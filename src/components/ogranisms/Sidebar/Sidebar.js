@@ -50,7 +50,7 @@ const StyledLougtButton = styled(ButtonIcon)`
 
 const SideBar = ({ pageContext }) => (
   <StyledSideBar activeColor={pageContext}>
-    <StyledLogoIcon to="/" />
+    <StyledLogoIcon to="/notes" />
     <StyledLinksList>
       <li>
         <ButtonIcon as={NavLink} to="/notes" icon={penIcon} activeclass="active" />
